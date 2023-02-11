@@ -1,7 +1,7 @@
 package co.ke.xently.learnspring
 
-import co.ke.xently.learnspring.models.Employee
-import co.ke.xently.learnspring.repositories.EmployeeRepository
+import co.ke.xently.learnspring.employee.models.Employee
+import co.ke.xently.learnspring.employee.repositories.EmployeeRepository
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.boot.CommandLineRunner
@@ -16,13 +16,13 @@ internal class LoadDatabase {
             log.info(
                 buildString {
                     append("Preloading ")
-                    append(repository.save(Employee("Bilbo Baggins", "burglar")))
+                    append(repository.save(Employee(firstName = "Bilbo", lastName = "Baggins", role = "burglar")))
                 }
             )
             log.info(
                 buildString {
                     append("Preloading ")
-                    append(repository.save(Employee("Frodo Baggins", "thief")))
+                    append(repository.save(Employee(firstName = "Frodo", lastName = "Baggins", role = "thief")))
                 }
             )
         }

@@ -29,6 +29,7 @@ dependencies {
 
     runtimeOnly("com.h2database:h2")
 
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
