@@ -9,6 +9,7 @@ import org.springframework.hateoas.EntityModel
 import org.springframework.hateoas.IanaLinkRelations
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.util.stream.Collectors
@@ -54,14 +55,25 @@ class OrderController constructor(
         return ResponseEntity.noContent().build<Nothing>()
     }
 
-    @GetMapping("/orders/{id}/{action}")
-    @PatchMapping("/orders/{id}/{action}")
-    fun changeStatus(@PathVariable id: Long, @PathVariable action: String) =
-        repository.findById(id).orElseThrow {
+    @RequestMapping("/orders/{id}/{action}", method = [RequestMethod.GET, RequestMethod.PATCH])
+    fun changeStatus(@PathVariable id: Long, @PathVariable action: String): ResponseEntity<EntityModel<Order>> {
+        var isStatusSameAsCurrent = false
+        return repository.findById(id).orElseThrow {
             OrderNotFoundException(id)
         }.let {
-            repository.save(it.apply { status = Order.Status.fromAction(action) })
+            val newStatus = Order.Status.fromAction(action)
+            if (it.status == newStatus) {
+                isStatusSameAsCurrent = true
+                it
+            } else {
+                repository.save(it.apply { status = newStatus })
+            }
         }.let(assembler::toModel).run {
-            ResponseEntity.accepted().location(getRequiredLink(IanaLinkRelations.SELF).toUri()).body(this)
+            if (isStatusSameAsCurrent) {
+                ResponseEntity.status(HttpStatus.ALREADY_REPORTED)
+            } else {
+                ResponseEntity.accepted()
+            }.location(getRequiredLink(IanaLinkRelations.SELF).toUri()).body(this)
         }
+    }
 }

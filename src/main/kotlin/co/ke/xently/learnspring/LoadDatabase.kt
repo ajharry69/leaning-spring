@@ -30,7 +30,13 @@ internal class LoadDatabase {
             log.info(
                 buildString {
                     append("Preloading ")
-                    append(orderRepository.save(Order(description = "Please deliver the order to Westlands, Nairobi, Kenya")))
+                    append(orderRepository.save(Order(description = "Please deliver the order at Westlands, Nairobi, Kenya")))
+                }
+            )
+            log.info(
+                buildString {
+                    append("Preloading ")
+                    append(orderRepository.save(Order(description = "Laptop to be delivered at Lavington, Nairobi, Kenya")))
                 }
             )
         }
