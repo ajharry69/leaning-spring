@@ -17,21 +17,19 @@ data class Order(
         get() = "$id"
     var status: Status = Status.Received
         set(value) {
-            if (status != value && status in STATUS_PIPELINE) {
-                if (value !in acceptableStatusTransitions) {
-                    throw InvalidOrderStatusTransitionException(this)
-                }
-                field = value
+            if (status != value && value !in acceptableStatusTransitions) {
+                throw InvalidOrderStatusTransitionException(this, value)
             }
+            field = value
         }
 
     val acceptableStatusTransitions get() = STATUS_PIPELINE[status] ?: emptyList()
 
-    enum class Status(val action: String) {
-        Received("receive"),
-        Confirmed("confirm"),
-        Cancelled("cancel"),
-        Dispatched("dispatch");
+    enum class Status(val action: String, val description: String) {
+        Received("receive", "received"),
+        Confirmed("confirm", "confirmed"),
+        Cancelled("cancel", "cancelled"),
+        Dispatched("dispatch", "dispatched");
 
         companion object {
             private val ACTION_STATUS_MAP = buildMap {

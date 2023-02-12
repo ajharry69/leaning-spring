@@ -44,17 +44,6 @@ class OrderTest {
     }
 
     @Test
-    fun `setStatus cannot transition a Cancelled order further - Cancelled is a terminal status`() {
-        assertEquals(
-            Order.Status.Cancelled,
-            Order().apply {
-                status = Order.Status.Cancelled
-                status = Order.Status.Dispatched
-            }.status,
-        )
-    }
-
-    @Test
     fun `setStatus throws an exception if transitioning to an unexpected order status`() {
         assertThrows(InvalidOrderStatusTransitionException::class.java) {
             Order().apply {
@@ -64,12 +53,22 @@ class OrderTest {
     }
 
     @Test
-    fun `setStatus retains order status if the current status is the same one that is currently set`() {
+    fun `setStatus retains order status if the new status is the same one that is currently set`() {
         assertEquals(
             Order.Status.Received,
             Order().apply {
                 status = Order.Status.Received
             }.status,
         )
+    }
+
+    @Test
+    fun `setStatus throws an exception if transitioning to an unacceptable status`() {
+        assertThrows(InvalidOrderStatusTransitionException::class.java) {
+            Order().apply {
+                status = Order.Status.Confirmed
+                status = Order.Status.Cancelled
+            }.status
+        }
     }
 }
