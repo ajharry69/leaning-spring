@@ -15,18 +15,19 @@ import org.springframework.web.bind.annotation.*
 import java.util.stream.Collectors
 
 @RestController
+@RequestMapping("/orders")
 class OrderController constructor(
     private val repository: OrderRepository,
     private val assembler: OrderModelAssembler,
 ) {
 
-    @GetMapping("/orders")
+    @GetMapping
     fun get(): CollectionModel<EntityModel<Order>> {
         val entities = repository.findAll().stream().map(assembler::toModel).collect(Collectors.toList())
         return CollectionModel.of(entities, linkTo(methodOn(this::class.java).get()).withSelfRel())
     }
 
-    @GetMapping("/orders/{id}")
+    @GetMapping("/{id}")
     fun get(@PathVariable id: Long): EntityModel<Order> {
         val order = repository.findById(id).orElseThrow {
             OrderNotFoundException(id)
@@ -34,13 +35,13 @@ class OrderController constructor(
         return assembler.toModel(order)
     }
 
-    @PostMapping("/orders")
+    @PostMapping
     fun add(@RequestBody order: Order) =
         repository.save(order.apply { status = Order.Status.Received }).let(assembler::toModel).run {
             ResponseEntity.created(getRequiredLink(IanaLinkRelations.SELF).toUri()).body(this)
         }
 
-    @PutMapping("/orders/{id}")
+    @PutMapping("/{id}")
     fun update(@RequestBody order: Order, @PathVariable id: Long) = repository.findById(id).map {
         repository.save(order.copy(id = id))
     }.orElseGet {
@@ -49,13 +50,13 @@ class OrderController constructor(
         ResponseEntity.created(getRequiredLink(IanaLinkRelations.SELF).toUri()).body(this)
     }
 
-    @DeleteMapping("/orders/{id}")
+    @DeleteMapping("/{id}")
     fun remove(@PathVariable id: Long): ResponseEntity<*> {
         repository.deleteById(id)
         return ResponseEntity.noContent().build<Nothing>()
     }
 
-    @RequestMapping("/orders/{id}/{action}", method = [RequestMethod.GET, RequestMethod.PATCH])
+    @RequestMapping("/{id}/{action}", method = [RequestMethod.GET, RequestMethod.PATCH])
     fun changeStatus(@PathVariable id: Long, @PathVariable action: String): ResponseEntity<EntityModel<Order>> {
         var isStatusSameAsCurrent = false
         return repository.findById(id).orElseThrow {
