@@ -1,6 +1,5 @@
 package co.ke.xently.learnspring.employee.models
 
-import co.ke.xently.learnspring.employee.models.Employee
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
