@@ -1,6 +1,6 @@
-package co.ke.xently.learnspring.employee.exceptions.advices
+package co.ke.xently.learnspring.features.employees.exceptions.advices
 
-import co.ke.xently.learnspring.employee.exceptions.EmployeeNotFoundException
+import co.ke.xently.learnspring.features.employees.exceptions.EmployeeNotFoundException
 import org.springframework.hateoas.MediaTypes
 import org.springframework.hateoas.mediatype.problem.Problem
 import org.springframework.http.HttpHeaders

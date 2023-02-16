@@ -1,7 +1,7 @@
 package co.ke.xently.learnspring
 
-import co.ke.xently.learnspring.employee.models.Employee
-import co.ke.xently.learnspring.employee.repositories.EmployeeRepository
+import co.ke.xently.learnspring.features.employees.models.Employee
+import co.ke.xently.learnspring.features.employees.repositories.EmployeeRepository
 import co.ke.xently.learnspring.features.orders.models.Order
 import co.ke.xently.learnspring.features.orders.repositories.OrderRepository
 import org.slf4j.Logger

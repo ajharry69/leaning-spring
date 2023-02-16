@@ -1,7 +1,7 @@
-package co.ke.xently.learnspring.employee
+package co.ke.xently.learnspring.features.employees
 
-import co.ke.xently.learnspring.employee.controllers.EmployeeController
-import co.ke.xently.learnspring.employee.models.Employee
+import co.ke.xently.learnspring.features.employees.controllers.EmployeeController
+import co.ke.xently.learnspring.features.employees.models.Employee
 import org.springframework.hateoas.EntityModel
 import org.springframework.hateoas.server.RepresentationModelAssembler
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo

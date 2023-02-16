@@ -1,9 +1,9 @@
-package co.ke.xently.learnspring.employee.controllers
+package co.ke.xently.learnspring.features.employees.controllers
 
-import co.ke.xently.learnspring.employee.EmployeeModelAssembler
-import co.ke.xently.learnspring.employee.exceptions.EmployeeNotFoundException
-import co.ke.xently.learnspring.employee.models.Employee
-import co.ke.xently.learnspring.employee.repositories.EmployeeRepository
+import co.ke.xently.learnspring.features.employees.EmployeeModelAssembler
+import co.ke.xently.learnspring.features.employees.exceptions.EmployeeNotFoundException
+import co.ke.xently.learnspring.features.employees.models.Employee
+import co.ke.xently.learnspring.features.employees.repositories.EmployeeRepository
 import org.springframework.hateoas.CollectionModel
 import org.springframework.hateoas.EntityModel
 import org.springframework.hateoas.IanaLinkRelations

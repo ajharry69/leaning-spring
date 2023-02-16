@@ -1,4 +1,4 @@
-package co.ke.xently.learnspring.employee.models
+package co.ke.xently.learnspring.features.employees.models
 
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
