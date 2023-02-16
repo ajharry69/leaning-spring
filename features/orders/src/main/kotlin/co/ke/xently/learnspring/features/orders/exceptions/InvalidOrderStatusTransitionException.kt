@@ -1,6 +1,6 @@
-package co.ke.xently.learnspring.order.exceptions
+package co.ke.xently.learnspring.features.orders.exceptions
 
-import co.ke.xently.learnspring.order.models.Order
+import co.ke.xently.learnspring.features.orders.models.Order
 
 class InvalidOrderStatusTransitionException(order: Order, newOrderStatus: Order.Status) : RuntimeException(
     if (order.acceptableStatusTransitions.isEmpty()) {

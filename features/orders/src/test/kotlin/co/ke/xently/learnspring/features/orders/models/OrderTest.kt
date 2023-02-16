@@ -1,9 +1,9 @@
-package co.ke.xently.learnspring.order.models
+package co.ke.xently.learnspring.features.orders.models
 
-import co.ke.xently.learnspring.order.exceptions.InvalidOrderStatusTransitionException
+import co.ke.xently.learnspring.features.orders.exceptions.InvalidOrderStatusTransitionException
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 
 class OrderTest {
 

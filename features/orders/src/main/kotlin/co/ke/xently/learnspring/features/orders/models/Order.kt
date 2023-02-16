@@ -1,7 +1,7 @@
-package co.ke.xently.learnspring.order.models
+package co.ke.xently.learnspring.features.orders.models
 
-import co.ke.xently.learnspring.order.exceptions.InvalidOrderStatusActionException
-import co.ke.xently.learnspring.order.exceptions.InvalidOrderStatusTransitionException
+import co.ke.xently.learnspring.features.orders.exceptions.InvalidOrderStatusActionException
+import co.ke.xently.learnspring.features.orders.exceptions.InvalidOrderStatusTransitionException
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id

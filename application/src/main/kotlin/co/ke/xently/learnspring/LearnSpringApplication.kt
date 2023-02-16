@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean
 import org.springframework.web.servlet.config.annotation.CorsRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = ["co.ke.xently.learnspring"])
 class LearnSpringApplication {
     @Bean
     fun corsConfigurer(): WebMvcConfigurer {

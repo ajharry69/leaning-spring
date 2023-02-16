@@ -1,6 +1,6 @@
-package co.ke.xently.learnspring.order.exceptions.advices
+package co.ke.xently.learnspring.features.orders.exceptions.advices
 
-import co.ke.xently.learnspring.order.exceptions.OrderNotFoundException
+import co.ke.xently.learnspring.features.orders.exceptions.InvalidOrderStatusTransitionException
 import org.springframework.hateoas.MediaTypes
 import org.springframework.hateoas.mediatype.problem.Problem
 import org.springframework.http.HttpHeaders
@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseBody
 
 @ControllerAdvice
-class OrderNotFoundAdvice {
+class InvalidOrderStatusTransitionAdvice {
     @ResponseBody
-    @ExceptionHandler(OrderNotFoundException::class)
-    fun handler(exception: OrderNotFoundException) = ResponseEntity.status(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(InvalidOrderStatusTransitionException::class)
+    fun handler(exception: InvalidOrderStatusTransitionException) = ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE)
         .header(HttpHeaders.CONTENT_TYPE, MediaTypes.HTTP_PROBLEM_DETAILS_JSON_VALUE)
-        .body(Problem.create().withTitle("Title").withDetail(exception.localizedMessage))
+        .body(Problem.create().withDetail(exception.localizedMessage))
 }

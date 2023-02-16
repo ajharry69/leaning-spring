@@ -1,7 +1,7 @@
-package co.ke.xently.learnspring.order
+package co.ke.xently.learnspring.features.orders
 
-import co.ke.xently.learnspring.order.controllers.OrderController
-import co.ke.xently.learnspring.order.models.Order
+import co.ke.xently.learnspring.features.orders.controllers.OrderController
+import co.ke.xently.learnspring.features.orders.models.Order
 import org.springframework.hateoas.EntityModel
 import org.springframework.hateoas.server.RepresentationModelAssembler
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo

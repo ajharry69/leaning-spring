@@ -1,9 +1,9 @@
-package co.ke.xently.learnspring.order.controllers
+package co.ke.xently.learnspring.features.orders.controllers
 
-import co.ke.xently.learnspring.order.OrderModelAssembler
-import co.ke.xently.learnspring.order.exceptions.OrderNotFoundException
-import co.ke.xently.learnspring.order.models.Order
-import co.ke.xently.learnspring.order.repositories.OrderRepository
+import co.ke.xently.learnspring.features.orders.OrderModelAssembler
+import co.ke.xently.learnspring.features.orders.exceptions.OrderNotFoundException
+import co.ke.xently.learnspring.features.orders.models.Order
+import co.ke.xently.learnspring.features.orders.repositories.OrderRepository
 import org.springframework.hateoas.CollectionModel
 import org.springframework.hateoas.EntityModel
 import org.springframework.hateoas.IanaLinkRelations
