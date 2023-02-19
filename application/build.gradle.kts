@@ -2,6 +2,7 @@ dependencies {
     implementation(project(":features:orders"))
     implementation(project(":features:employees"))
     implementation(project(":features:greetings"))
+    implementation(project(":features:chat"))
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     implementation("org.springframework.boot:spring-boot-starter-security")
